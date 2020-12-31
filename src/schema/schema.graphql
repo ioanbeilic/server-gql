@@ -1,0 +1,73 @@
+type Query {
+    "User list"
+    users: String
+}
+
+"User information "
+type User {
+    "User id"
+    _id: ID!
+    email: String!
+    password: String
+    roles: [Role]
+    favorites: [Restaurant!]
+    restaurants: [Restaurant!]
+    ratings: [Rating!]
+    comments: [Comment]
+    active: Boolean
+    deleted: Boolean
+}
+
+enum Role {
+    ADMIN
+    EDITOR
+}
+
+type Restaurant {
+    _id: ID
+    name: String!
+    vat: String!
+    address: String!
+    coordinates: [String!]!
+    description: String
+    images: [String]
+    dailyMenu: DailyMenu
+    menus: [Menu]
+    active: Boolean
+    users: [User]
+    categories: [Category]
+    comments: [Comment]
+    ratings: [Rating]
+    createdAt: String
+    updatedAt: String
+}
+
+type Rating {
+    star: Int!
+    restaurant: Restaurant!
+    createdAt: String
+    updatedAt: String
+}
+
+type Comment {
+    description: String!
+    restaurant: Restaurant!
+    createdAt: String
+    updatedAt: String
+}
+
+type DailyMenu {
+    name: String
+    img: String!
+    description: String
+    createdAt: String
+    updatedAt: String
+}
+
+type Menu {
+    name: String
+    img: String!
+    description: String
+    createdAt: String
+    updatedAt: String
+}
